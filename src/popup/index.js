@@ -50,7 +50,7 @@ function saveSettings() {
 function loadSettings(ui) {
   chrome.storage.sync.get(["modelName", "apiEndpoint", "mode"], (result) => {
     console.log("[Popup] Settings loaded:", result);
-    ui.modelName.value = result.modelName || "qwen3-vl";
+    ui.modelName.value = result.modelName || "qwen3-vl:8b";
     ui.apiEndpoint.value = result.apiEndpoint || "http://localhost:11434";
     if (result.mode) {
       ui.selectApi.value = result.mode;

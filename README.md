@@ -12,7 +12,7 @@ Con un simple clic, puedes detectar rostros, identificar celebridades o evaluar 
   - **🌟 Celebrities**: Identifica personas famosas o reconocidas públicamente.
   - **🔞 Nopor**: Filtro de seguridad para detectar contenido adulto o inapropiado.
 - **Configuración Flexible**:
-  - **Selector de Modelos**: Elige qué modelo de visión usar (ej. `qwen3-vl`, `llava`) directamente desde el popup.
+  - **Selector de Modelos**: Elige qué modelo de visión usar (ej. `qwen3-vl:8b`, `llava`) directamente desde el popup.
   - **Endpoint Personalizable**: Conéctate a cualquier instancia de Ollama (por defecto `localhost:11434`).
 - **Interfaz Reactiva**:
   - Botón "Analyze" que se inyecta discretamente en las imágenes.
@@ -62,7 +62,7 @@ Esta extensión necesita un "cerebro" local.
 1.  Descarga e instala [Ollama](https://ollama.com).
 2.  Abre tu terminal y descarga un modelo de visión. Recomendamos **Qwen-VL** por su rapidez:
     ```bash
-    ollama pull qwen3-vl
+    ollama pull qwen3-vl:8b
     ```
 3.  **IMPORTANTE**: Configura Ollama para aceptar peticiones desde el navegador (CORS).
     - **Windows (PowerShell)**:
@@ -87,7 +87,7 @@ Esta extensión necesita un "cerebro" local.
 2.  **Configuración Inicial**:
     - Abre el popup de la extensión.
     - Asegúrate de que el **Endpoint** sea correcto.
-    - **Selecciona el modelo** que descargaste (ej. `qwen3-vl`) en la lista desplegable.
+    - **Selecciona el modelo** que descargaste (ej. `qwen3-vl:8b`) en la lista desplegable.
     - Elige el modo por defecto (Faces, Celebrities, Nopor).
 3.  Navega a una web con imágenes (ej. Google Imágenes, Pinterest).
 4.  Pasa el ratón sobre una imagen y haz clic en el botón **Analyze**.
