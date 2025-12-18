@@ -36,6 +36,11 @@ function saveSettings() {
     apiEndpoint: ui.apiEndpoint.value,
     mode: ui.selectApi.value,
   });
+  console.log("[Popup] Settings saved", {
+    model: ui.modelName.value,
+    endpoint: ui.apiEndpoint.value,
+    mode: ui.selectApi.value,
+  });
 }
 
 /**
@@ -44,6 +49,7 @@ function saveSettings() {
  */
 function loadSettings(ui) {
   chrome.storage.sync.get(["modelName", "apiEndpoint", "mode"], (result) => {
+    console.log("[Popup] Settings loaded:", result);
     ui.modelName.value = result.modelName || "qwen3-vl";
     ui.apiEndpoint.value = result.apiEndpoint || "http://localhost:11434";
     if (result.mode) {
@@ -66,7 +72,9 @@ function loadSettings(ui) {
  * Filtra y puebla el <datalist> para autocompletado.
  */
 function refreshModelList() {
+  console.log("[Popup] requesting listModels...");
   chrome.runtime.sendMessage({ action: "listModels" }, (response) => {
+    console.log("[Popup] listModels response:", response);
     // Verificamos respuesta válida
     if (response && response.success && response.models) {
       const ui = getUIElements();
@@ -88,6 +96,7 @@ function refreshModelList() {
  */
 
 window.onload = function () {
+  console.log("[Popup] window.onload");
   const ui = getUIElements();
 
   // 1. Cargar configuración inicial

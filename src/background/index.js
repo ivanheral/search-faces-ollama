@@ -1,5 +1,5 @@
-import { MODES_PROMPTS, DEFAULT_CONFIG } from "../config/constants.js";
-import { blobToBase64, normalizeEndpoint } from "../utils/index.js";
+import { MODES_PROMPTS, DEFAULT_CONFIG } from "/src/config/constants.js";
+import { blobToBase64, normalizeEndpoint } from "/src/utils/index.js";
 
 /**
  * ======================================================================================
@@ -9,23 +9,30 @@ import { blobToBase64, normalizeEndpoint } from "../utils/index.js";
 
 async function fetchVisionModels(apiEndpoint) {
   const endpoint = normalizeEndpoint(apiEndpoint);
+  console.log("[Background] fetchVisionModels from:", endpoint);
   const response = await fetch(`${endpoint}/api/tags`);
   if (!response.ok) throw new Error("Fallo al obtener modelos");
   const data = await response.json();
 
   // Filtramos por palabras clave conocidas de modelos visuales
-  return data.models
+  const filtered = data.models
     .filter((m) => {
       const name = m.name.toLowerCase();
       const families = m.details?.families || [];
       return ["vision"].some((k) => name.includes(k) || families.includes(k));
     })
     .map((m) => m.name);
+
+  console.log("[Background] Models found:", filtered);
+  return filtered;
 }
 
 async function analyzeImageWithOllama(url, mode, config) {
   const model = config.modelName || DEFAULT_CONFIG.modelName;
   const endpoint = normalizeEndpoint(config.apiEndpoint);
+  console.log(
+    `[Background] analyzeImageWithOllama | URL: ${url} | Model: ${model} | Mode: ${mode}`
+  );
 
   // 1. Descargar y Codificar
   const imgRes = await fetch(url);
@@ -54,8 +61,14 @@ async function analyzeImageWithOllama(url, mode, config) {
 
   const content = (await response.json()).message?.content || "{}";
   try {
-    return JSON.parse(content);
-  } catch {
+    const json = JSON.parse(content);
+    console.log("[Background] Analysis Result:", json);
+    return json;
+  } catch (err) {
+    console.warn(
+      "[Background] JSON parse failed, returning raw text. content:",
+      content
+    );
     return { raw_text: content };
   }
 }
@@ -67,6 +80,7 @@ async function analyzeImageWithOllama(url, mode, config) {
  */
 chrome.runtime.onMessage.addListener(
   ({ action, url, mode }, _, sendResponse) => {
+    console.log("[Background] onMessage received action:", action);
     if (action === "listModels") {
       chrome.storage.sync.get(["apiEndpoint"], ({ apiEndpoint }) =>
         fetchVisionModels(apiEndpoint)

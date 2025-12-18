@@ -10,6 +10,8 @@ chrome.storage.onChanged.addListener(
   ({ mode }) => mode && (typeDetect = mode.newValue)
 );
 
+console.log("[Content] Script loaded. Initial mode:", typeDetect);
+
 // --- UTILIDADES MINIMALISTAS ---
 const createElement = (tag, cls, txt = "") => {
   const el = document.createElement(tag);
@@ -25,6 +27,7 @@ const clearResults = (parent) =>
 
 // --- VISUALIZACIÓN ---
 function renderResults(parent, data, isAdultMode) {
+  console.log("[Content] renderResults data:", data, "isAdult:", isAdultMode);
   if (isAdultMode) {
     const infoDiv = parent.querySelector(".info-overlay");
     if (infoDiv) {
@@ -74,6 +77,7 @@ function renderResults(parent, data, isAdultMode) {
 
 // --- CONTROLADOR ---
 function analyze(img, btn) {
+  console.log("[Content] analyze triggered for:", img.currentSrc || img.src);
   clearResults(img.parentElement);
   if (btn) btn.innerHTML = '<div class="button-spinner"></div>';
 
@@ -84,6 +88,7 @@ function analyze(img, btn) {
       mode: typeDetect,
     },
     (res) => {
+      console.log("[Content] sendMessage response:", res);
       if (chrome.runtime.lastError || !res.success) {
         console.error(chrome.runtime.lastError || res.error);
         if (btn) btn.textContent = "Analyze";
@@ -103,6 +108,7 @@ const injectBtn = (img) => {
   if (getComputedStyle(img.parentElement).position === "static")
     img.parentElement.classList.add("relative-parent");
 
+  console.log("[Content] injectBtn for:", img.src);
   const btn = createElement("div", "info-overlay", "Analyze");
   btn.onclick = (e) => {
     e.stopPropagation();

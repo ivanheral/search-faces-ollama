@@ -1,4 +1,4 @@
-import { DEFAULT_CONFIG } from "../config/constants.js";
+import { DEFAULT_CONFIG } from "/src/config/constants.js";
 
 export const blobToBase64 = (blob) =>
   new Promise((resolve, reject) => {

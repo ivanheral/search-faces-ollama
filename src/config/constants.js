@@ -8,6 +8,6 @@ export const MODES_PROMPTS = {
 };
 
 export const DEFAULT_CONFIG = {
-  modelName: "qwen3-vl",
+  modelName: "qwen3-vl:8b",
   apiEndpoint: "http://localhost:11434",
 };
