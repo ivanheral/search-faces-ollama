@@ -43,9 +43,7 @@ function renderResults(parent, data, isAdultMode) {
   if (!faces.length) {
     parent
       .appendChild(createElement("div", "face-tags-container faces"))
-      .appendChild(
-        createElement("span", "face-tag", data.raw_text ?? "Sin Coincidencias")
-      );
+      .appendChild(createElement("span", "face-tag", "Sin Coincidencias"));
     return;
   }
 
