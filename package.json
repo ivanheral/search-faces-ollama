@@ -1,7 +1,22 @@
 {
   "name": "search-faces-ollama",
   "version": "1.0.0",
-  "description": "Chrome extension to detect faces with Ollama Qwen",
+  "description": "Chrome extension to detect faces, analyze attributes, and identify celebrities locally using Ollama AI models. Private, secure, and open source.",
+  "keywords": [
+    "ollama",
+    "chrome-extension",
+    "ai",
+    "local-llm",
+    "computer-vision",
+    "face-detection",
+    "image-analysis",
+    "qwen-vl",
+    "llava",
+    "privacy-first",
+    "offline-ai",
+    "machine-learning",
+    "javascript"
+  ],
   "main": "background.js",
   "repository": {
     "type": "git",

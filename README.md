@@ -1,5 +1,10 @@
 # 🤖 Search Faces - Extensión de Chrome con IA Local (Ollama)
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Ollama](https://img.shields.io/badge/AI-Ollama-orange.svg)
+
 Esta extensión de Chrome permite analizar imágenes en cualquier página web utilizando modelos de Inteligencia Artificial locales a través de **Ollama**. Es una herramienta educativa diseñada para enseñar cómo integrar modelos de visión (LMs) en el navegador de forma privada y segura.
 
 Con un simple clic, puedes detectar rostros, identificar celebridades o evaluar contenido, todo procesado en tu propia máquina.
@@ -18,7 +23,15 @@ Con un simple clic, puedes detectar rostros, identificar celebridades o evaluar 
   - Botón "Analyze" que se inyecta discretamente en las imágenes.
   - Indicadores visuales de carga y errores.
   - Resultados visualizados como etiquetas o cajas sobre la imagen.
+  - Resultados visualizados como etiquetas o cajas sobre la imagen.
 
+## 💡 Casos de Uso
+
+- **Educación**: Aprende cómo funcionan los LLMs multimodales y la visión por computador.
+- **Privacidad**: Analiza fotos personales sin subirlas a la nube (Google Photos, Facebook, etc.).
+- **Accesibilidad**: Genera descripciones automáticas para imágenes en la web.
+- **Desarrollo**: Úsalo como plantilla para crear tus propias extensiones con IA local.
+- **Seguridad**: Filtra contenido no deseado en tiempo real mientras navegas.
 ## 🛠️ Stack Tecnológico
 
 Este proyecto es un ejemplo moderno de desarrollo de extensiones:
@@ -98,3 +111,20 @@ Esta extensión necesita un "cerebro" local.
 
 - **Prompts**: Los prompts utilizados para cada modo se encuentran en `src/config/constants.js`. Puedes modificarlos para alterar el comportamiento del análisis.
 - **Depuración**: Si algo falla, revisa la consola de la extensión (click derecho en el popup -> Inspeccionar) o la consola de la página web.
+
+## 🤝 Contribución
+
+¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar la extensión, añadir nuevos modelos o corregir errores:
+
+1.  Haz un Fork del repositorio.
+2.  Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`).
+3.  Commit a tus cambios (`git commit -m 'Add some AmazingFeature'`).
+4.  Push a la rama (`git push origin feature/AmazingFeature`).
+5.  Abre un Pull Request.
+
+## 📄 Licencia
+
+Distribuido bajo la licencia MIT. Ver `LICENSE` para más información.
+
+---
+Hecho con ❤️ por [ivanheral](https://github.com/ivanheral)
